@@ -171,12 +171,7 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region GameState
-    public static GameState getState()
-    {
-        return gameState;
-    }
-
-    public static void setState(GameState state)
+    private static void setState(GameState state)
     {
         gameState = state;
     }

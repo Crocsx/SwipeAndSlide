@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerControl : MonoBehaviour {
 
+    // in second
+    public float MovementSpeed = 0.1f;
     public float MovementDistance = 10;
     public int MovementXAvailable = 5;
     public int MovementYAvailable = 5;
@@ -55,7 +57,7 @@ public class PlayerControl : MonoBehaviour {
     }
 
     /// <summary>
-    /// Move the player in the given direction
+    /// Do the calculation for the next player movement
     /// 
     /// Calculate the swipe direction
     /// Calculate the next position if we move
@@ -72,8 +74,29 @@ public class PlayerControl : MonoBehaviour {
         currentPosition = new Vector2(nextPosX > 0 ? nextPosX < MovementXAvailable ? nextPosX : MovementXAvailable - 1 : 0
                                         , nextPosY > 0 ? nextPosY < MovementYAvailable ? nextPosY : MovementYAvailable - 1 : 0);
 
-        transform.position = MovementsGrid[(int)currentPosition.x, (int)currentPosition.y];
+        Vector2 targetPos = MovementsGrid[(int)currentPosition.x, (int)currentPosition.y];
+        StartCoroutine(MoveAnimation(targetPos));
+    }
 
+    /// <summary>
+    /// Move the player in the given direction
+    /// 
+    /// Set the starting point, and target position
+    /// Move in the while at the givent speed
+    /// </summary>
+    /// <param name="targetPos"></param>
+    /// <returns></returns>
+    IEnumerator MoveAnimation(Vector2 targetPos)
+    {
+        Vector2 startPos = transform.position;
+        float timer = 0;
+        while (timer < MovementSpeed)
+        {
+            transform.position = Vector2.Lerp(startPos, targetPos, (timer / MovementSpeed));
+            timer += Time.deltaTime;
+            yield return null;
+        }
+        transform.position = targetPos;
     }
 
     private void OnDestroy()

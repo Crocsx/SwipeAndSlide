@@ -17,6 +17,15 @@ public class TimeManager : MonoBehaviour
     }
     private float _deltaTime;
 
+    public float optionalTime
+    {
+        get
+        {
+            return _optionalTime;
+        }
+    }
+    private float _optionalTime;
+
     public float fixedDeltaTime
     {
         get
@@ -26,7 +35,12 @@ public class TimeManager : MonoBehaviour
     }
     private float _fixedDeltaTime;
 
-    private float _modifier;
+    private float _modifierMain;
+    private float _modifierOptional;
+
+    // Used if paused, in order to restore the good value
+    private float _modifierMainBackup;
+    private float _modifierOptionalBackup;
     #endregion
 
     #region Singleton Initialization 
@@ -51,17 +65,19 @@ public class TimeManager : MonoBehaviour
 
         _deltaTime = 0;
         _fixedDeltaTime = 0;
-        _modifier = 1;
+        _optionalTime = 0;
+        _modifierMainBackup = 1;
     }
 
     void Update()
     {
-        _deltaTime = Time.deltaTime * _modifier;
+        _deltaTime = Time.deltaTime * _modifierMain;
+        _optionalTime = Time.deltaTime * _modifierOptional;
     }
 
     void FixedUpdate()
     {
-        _fixedDeltaTime = Time.fixedDeltaTime * _modifier;
+        _fixedDeltaTime = Time.fixedDeltaTime * _modifierMain;
     }
     #endregion
 
@@ -70,18 +86,35 @@ public class TimeManager : MonoBehaviour
         GameManager.instance.OnPauseGame -= OnPause;
         GameManager.instance.OnResumeGame -= OnResume;
     }
-    #region Methods
-
+    #region Private Methods
     private void OnPause()
     {
+        _modifierMainBackup = _modifierMain;
+        _modifierOptionalBackup = _modifierOptional;
+
         Time.timeScale = 0;
-        _modifier = 0;
+        _modifierMain = 0;
+        _modifierOptional = 0;
     }
 
     private void OnResume()
     {
-        Time.timeScale = 1;
-        _modifier = 1;
+        Time.timeScale = _modifierMainBackup;
+        _modifierMain = _modifierMainBackup;
+        _modifierOptional = _modifierOptionalBackup;
+    }
+    #endregion
+
+    #region Public Methods
+    void TimeScale(float Value)
+    {
+        _modifierOptional = _modifierOptional / (_modifierMain / Value);
+        _modifierMain = Value;
+    }
+
+    void TimeScaleAltered(float Value)
+    {
+        _modifierOptional = Mathf.Lerp(0 , _modifierMain, Value);
     }
     #endregion
 }
