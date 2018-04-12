@@ -66,7 +66,10 @@ public class TimeManager : MonoBehaviour
         _deltaTime = 0;
         _fixedDeltaTime = 0;
         _optionalTime = 0;
+        _modifierOptional = 1;
+        _modifierOptionalBackup = 1;
         _modifierMainBackup = 1;
+        _modifierMain = 1;
     }
 
     void Update()
