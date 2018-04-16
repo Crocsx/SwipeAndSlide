@@ -14,7 +14,9 @@ public class PlayerControl : MonoBehaviour {
 
     void Start () {
         TouchManager.instance.OnSwipe += Movement;
-        currentGridIndex = GridManager.instance.GetCenterIndex();
+        currentGridIndex = GridManager.instance.grids["movementGrid"].GetCenterIndex();
+        transform.position = GridManager.instance.grids["movementGrid"].GetCenterPosition();
+
     }
 
     /// <summary>
@@ -34,8 +36,8 @@ public class PlayerControl : MonoBehaviour {
         float nextPosX = currentGridIndex.x - swipeDirection.x;
         float nextPosY = currentGridIndex.y - swipeDirection.y;
 
-        targetGridIndex = GridManager.instance.ClampIndexOnGrid((int)nextPosX, (int)nextPosY);
-        StartCoroutine(MoveAnimation(GridManager.instance.GetPosition((int)targetGridIndex.x, (int)targetGridIndex.y)));
+        targetGridIndex = GridManager.instance.grids["movementGrid"].ClampIndexOnGrid((int)nextPosX, (int)nextPosY);
+        StartCoroutine(MoveAnimation(GridManager.instance.grids["movementGrid"].GetPosition((int)targetGridIndex.x, (int)targetGridIndex.y)));
     }
 
     /// <summary>
@@ -46,7 +48,6 @@ public class PlayerControl : MonoBehaviour {
     /// Set the target position to current position
     /// </summary>
     /// <param name="targetPos"></param>
-    /// <returns></returns>
     IEnumerator MoveAnimation(Vector2 targetPos)
     {
         Vector2 startPos = transform.position;
