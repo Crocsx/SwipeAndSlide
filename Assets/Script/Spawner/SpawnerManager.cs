@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class SpawnerManager : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
+    private SimpleGrid enemyGrid;
+    void Start()
+    {
+        enemyGrid = GridManager.instance.GetGrid("enemyGrid");
+    }
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+        
+    }
 }

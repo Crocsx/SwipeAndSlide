@@ -30,9 +30,17 @@ public class GridManager : MonoBehaviour {
         eGrid.CreateGrid(Vector2.zero, 7, 7, 10, 10);
         grids.Add("enemyGrid", eGrid);
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
+
+    // Update is called once per frame
+    public SimpleGrid GetGrid (string name) {
+        if (grids.ContainsKey(name))
+        {
+            return grids["name"];
+        }
+        else
+        {
+            Debug.LogError("No Grid Found");
+            return null;
+        }
 	}
 }

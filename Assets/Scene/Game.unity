@@ -236,7 +236,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MovementSpeed: 0.1
-  MovementDistance: 10
   MovementXAvailable: 5
   MovementYAvailable: 5
 --- !u!1 &1032073472
@@ -249,6 +248,7 @@ GameObject:
   - component: {fileID: 1032073476}
   - component: {fileID: 1032073475}
   - component: {fileID: 1032073474}
+  - component: {fileID: 1032073477}
   - component: {fileID: 1032073473}
   m_Layer: 0
   m_Name: Visualizer
@@ -266,7 +266,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 6f26857ab32dc0c4498a1ee9ba5dd23c, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -382,6 +382,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1032073477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1032073472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c13e33b314230624fa4ed876a48a5a67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  music: {fileID: 8300000, guid: 6f26857ab32dc0c4498a1ee9ba5dd23c, type: 3}
+  BPM: 87
 --- !u!1 &1381626474
 GameObject:
   m_ObjectHideFlags: 0
@@ -395,6 +408,7 @@ GameObject:
   - component: {fileID: 1381626477}
   - component: {fileID: 1381626480}
   - component: {fileID: 1381626476}
+  - component: {fileID: 1381626481}
   m_Layer: 0
   m_Name: '[MANAGER]'
   m_TagString: Untagged
@@ -470,6 +484,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c59eff0f3a65b44ea3b79b37b55dc92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1381626481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1381626474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8c5934d2b1a8ab4c82322257601bd7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grid: {fileID: 1159470013143798, guid: ca2fdb618b4467a45b4f7051f5083378, type: 2}
 --- !u!1 &1937811439
 GameObject:
   m_ObjectHideFlags: 0
