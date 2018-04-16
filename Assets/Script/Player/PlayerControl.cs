@@ -6,54 +6,15 @@ public class PlayerControl : MonoBehaviour {
 
     // in second
     public float MovementSpeed = 0.1f;
-    public float MovementDistance = 10;
     public int MovementXAvailable = 5;
     public int MovementYAvailable = 5;
 
-    private Vector2 currentPosition = new Vector2();
-    private Vector2[,] MovementsGrid;
+    private Vector2 currentGridIndex = new Vector2();
+    private Vector2 targetGridIndex = new Vector2();
 
     void Start () {
         TouchManager.instance.OnSwipe += Movement;
-        SetupMovementGrid();
-    }
-
-    /// <summary>
-    /// Setup a grid of possible movement (WORKS ONLY FOR GRID)
-    /// 
-    /// Set the distance beetween each X and Y point
-    /// Set the current Player Position in the middle
-    /// Calculate the minimum X and Y position reachable
-    /// Iterate beetwen Xand Y in order to create each X and Y position on the grid
-    /// 
-    /// </summary>
-    void SetupMovementGrid()
-    {
-        float XMin = Mathf.Floor(MovementXAvailable / 2) * MovementDistance;
-        float YMin = Mathf.Floor(MovementYAvailable / 2) * MovementDistance;
-
-        currentPosition = new Vector2(Mathf.Round(MovementXAvailable / 2), Mathf.Round(MovementXAvailable / 2));
-
-        float[] MovementX = new float[MovementXAvailable];
-        float[] MovementY = new float[MovementYAvailable];
-
-        Vector3 minPoint = new Vector2(transform.position.x - (XMin * currentPosition.x), transform.position.y - (YMin * currentPosition.y));
-
-        MovementsGrid = new Vector2[MovementXAvailable, MovementYAvailable];
-
-        for (int i = 0; i < MovementYAvailable; i++)
-        {
-            MovementY[i] = minPoint.y + (YMin + (i * MovementDistance));
-            for (int j = 0; j < MovementXAvailable; j++)
-            {
-                MovementX[j] = minPoint.y + (XMin + (j * MovementDistance));
-                MovementsGrid[i, j] = new Vector2(MovementY[i], MovementX[j]);
-
-                GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                cube.transform.position = new Vector3(MovementY[i], MovementX[j], 0);
-            }
-        }
-
+        currentGridIndex = GridManager.instance.GetCenterIndex();
     }
 
     /// <summary>
@@ -66,16 +27,15 @@ public class PlayerControl : MonoBehaviour {
     /// </summary>
     /// <param name="touch"></param>
     /// <param name="direction"></param>
-    void Movement (TouchStruct touch, Vector2 direction) {
+    void Movement(TouchStruct touch, Vector2 direction)
+    {
         Vector3 swipeDirection = ToolBox.instance.ClosestDirection(direction);
 
-        float nextPosX = currentPosition.x - swipeDirection.x;
-        float nextPosY = currentPosition.y - swipeDirection.y;
-        currentPosition = new Vector2(nextPosX > 0 ? nextPosX < MovementXAvailable ? nextPosX : MovementXAvailable - 1 : 0
-                                        , nextPosY > 0 ? nextPosY < MovementYAvailable ? nextPosY : MovementYAvailable - 1 : 0);
+        float nextPosX = currentGridIndex.x - swipeDirection.x;
+        float nextPosY = currentGridIndex.y - swipeDirection.y;
 
-        Vector2 targetPos = MovementsGrid[(int)currentPosition.x, (int)currentPosition.y];
-        StartCoroutine(MoveAnimation(targetPos));
+        targetGridIndex = GridManager.instance.ClampIndexOnGrid((int)nextPosX, (int)nextPosY);
+        StartCoroutine(MoveAnimation(GridManager.instance.GetPosition((int)targetGridIndex.x, (int)targetGridIndex.y)));
     }
 
     /// <summary>
@@ -83,6 +43,7 @@ public class PlayerControl : MonoBehaviour {
     /// 
     /// Set the starting point, and target position
     /// Move in the while at the givent speed
+    /// Set the target position to current position
     /// </summary>
     /// <param name="targetPos"></param>
     /// <returns></returns>
@@ -96,6 +57,7 @@ public class PlayerControl : MonoBehaviour {
             timer += Time.deltaTime;
             yield return null;
         }
+        currentGridIndex = targetGridIndex;
         transform.position = targetPos;
     }
 
