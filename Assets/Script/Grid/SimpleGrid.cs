@@ -75,6 +75,11 @@ public class SimpleGrid : MonoBehaviour {
         return _grid[(int)gridPosition.x][(int)gridPosition.y];
     }
 
+    public Vector2 GetPosition(float x, float y)
+    {
+        Vector2 gridPosition = ClampIndexOnGrid((int)x, (int)y);
+        return _grid[(int)gridPosition.x][(int)gridPosition.y];
+    }
     /// <summary>
     /// Get the center position of the grid
     /// 
@@ -106,5 +111,17 @@ public class SimpleGrid : MonoBehaviour {
         Vector2 clampedIndex = new Vector2(x > 0 ? x < _gridSizeX ? x : _gridSizeX - 1 : 0
                                         , y > 0 ? y < _gridSizeY ? y : _gridSizeY - 1 : 0);
         return clampedIndex;
+    }
+
+    /// <summary>
+    /// Is the index requested in the array ?
+    /// </summary>
+    /// <param name="x"></param>
+    /// <param name="y"></param>
+    /// <returns>return true if movement is possible else false</returns>
+    public bool IndexExist(int x, int y)
+    {
+        return (x >= 0 ? x <= _gridSizeX ? true : false : false
+                                        && y >= 0 ? y <= _gridSizeY ? true : false : false);
     }
 }
