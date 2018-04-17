@@ -14,8 +14,8 @@ public class SimpleGrid : MonoBehaviour {
     float _gridSpaceY;
     public Vector2 centerPosition { get { return _centerPosition; } }
     Vector2 _centerPosition;
-
-    private Vector2[,] _movementsGrid;
+    public Vector2[][] grid { get { return _grid; } }
+    private Vector2[][] _grid;
 
     public void CreateGrid(Vector2 center, int sizeX, int sizeY,float spaceX, float spaceY)
     {
@@ -44,15 +44,17 @@ public class SimpleGrid : MonoBehaviour {
         float[] MovementX = new float[_gridSizeX];
         float[] MovementY = new float[_gridSizeY];
 
-        _movementsGrid = new Vector2[_gridSizeX, _gridSizeY];
+        _grid = new Vector2[_gridSizeY][];
 
         for (int i = 0; i < _gridSizeY; i++)
         {
             MovementY[i] = minPoint.y + (i * _gridSpaceY);
+            _grid[i] = new Vector2[_gridSizeX];
             for (int j = 0; j < _gridSizeX; j++)
             {
+                
                 MovementX[j] = minPoint.x +(j * _gridSpaceX);
-                _movementsGrid[i, j] = new Vector2(MovementY[i], MovementX[j]);
+                _grid[i][j] = new Vector2(MovementY[i], MovementX[j]);
 
                 GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
                 cube.transform.parent = transform;
@@ -70,7 +72,7 @@ public class SimpleGrid : MonoBehaviour {
     public Vector2 GetPosition(int x, int y)
     {
         Vector2 gridPosition = ClampIndexOnGrid(x, y);
-        return _movementsGrid[(int)gridPosition.x, (int)gridPosition.y];
+        return _grid[(int)gridPosition.x][(int)gridPosition.y];
     }
 
     /// <summary>
@@ -80,7 +82,7 @@ public class SimpleGrid : MonoBehaviour {
     /// <returns>return the center position of the grid</returns>
     public Vector2 GetCenterPosition()
     {
-        return _movementsGrid[_gridSizeX / 2, _gridSizeY / 2];
+        return _grid[_gridSizeX / 2][_gridSizeY / 2];
     }
 
     /// <summary>
