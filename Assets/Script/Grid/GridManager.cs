@@ -17,10 +17,12 @@ public class GridManager : MonoBehaviour {
 
         else if (instance != this)
             Destroy(gameObject);
+
+        SetupGrid();
     }
 
     // Use this for initialization
-    void Start ()
+    void SetupGrid()
     {
         SimpleGrid pGrid = Instantiate(grid, new Vector3(0, 0, 0), Quaternion.identity).transform.GetComponent<SimpleGrid>();
         pGrid.CreateGrid(Vector2.zero, 5, 5, 10, 10);
@@ -32,10 +34,11 @@ public class GridManager : MonoBehaviour {
     }
 
     // Update is called once per frame
-    public SimpleGrid GetGrid (string name) {
+    public SimpleGrid GetGrid (string name)
+    {
         if (grids.ContainsKey(name))
         {
-            return grids["name"];
+            return grids[name];
         }
         else
         {
