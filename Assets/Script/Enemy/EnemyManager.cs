@@ -74,10 +74,11 @@ public class EnemyManager : MonoBehaviour {
     private void Update()
     {
         Camera.main.backgroundColor = Color.blue;
+        timer += Time.deltaTime;
     }
 
     private void Spawn()
-    { 
+    {
         Vector2 randKey = spawnablePosition.Keys.ElementAt((int)Random.Range(0, spawnablePosition.Keys.Count));
         int randValue = Random.Range(0, spawnablePosition[Vector2.up].Length - 1);
         Vector2 pos = enemyGrid.GetPosition(spawnablePosition[randKey][randValue].x, spawnablePosition[randKey][randValue].y);

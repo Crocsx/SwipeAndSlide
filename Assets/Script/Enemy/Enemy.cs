@@ -36,8 +36,7 @@ public class Enemy : MonoBehaviour {
         }
         else
         {
-            Debug.Log("Boom");
-            GameObject.Destroy(this);
+            GameObject.Destroy(gameObject);
         }
 
         StartCoroutine(MoveAnimation(movementGrid.GetPosition(targetGridIndex.x, targetGridIndex.y)));

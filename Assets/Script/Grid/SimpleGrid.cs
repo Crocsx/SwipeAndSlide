@@ -121,7 +121,6 @@ public class SimpleGrid : MonoBehaviour {
     /// <returns>return true if movement is possible else false</returns>
     public bool IndexExist(int x, int y)
     {
-        return (x >= 0 ? x <= _gridSizeX ? true : false : false
-                                        && y >= 0 ? y <= _gridSizeY ? true : false : false);
+        return (x > 0 && x < _gridSizeX) && (y > 0 && y < _gridSizeY);
     }
 }

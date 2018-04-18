@@ -34,7 +34,6 @@ public class MusicPlayer : MonoBehaviour {
 
         currentBPM = defaultBPM;
         currentBeat = 60.0f / currentBPM;
-        Debug.Log(currentBPM);
     }
 	
 	// Update is called once per frame
@@ -53,15 +52,16 @@ public class MusicPlayer : MonoBehaviour {
         }
     }
 
-    void RaiseBPM(int factor)
+    public void RaiseBPM(int factor)
     {
         currentBPM = currentBPM * factor;
-        currentBeat = 60 / currentBPM;
+        currentBeat = 60.0f / currentBPM;
+        Debug.Log(currentBeat);
     }
 
-    void LowerBPM(int factor)
+    public void LowerBPM(int factor)
     {
         currentBPM = currentBPM * factor;
-        currentBeat = 60 / currentBPM;
+        currentBeat = 60.0f / currentBPM;
     }
 }
