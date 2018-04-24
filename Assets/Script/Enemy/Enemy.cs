@@ -61,6 +61,7 @@ public class Enemy : MonoBehaviour {
     {
         Vector2 startPos = transform.position;
         float timer = 0;
+        GetComponent<ParticleSystem>().Play();
         while (timer < MovementSpeed)
         {
             transform.position = Vector2.Lerp(startPos, targetPos, (timer / MovementSpeed));
