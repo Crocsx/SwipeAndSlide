@@ -9,25 +9,29 @@ public class Enemy : MonoBehaviour {
     Vector2 direction;
     Vector2 currentGridIndex;
     Vector2 targetGridIndex;
-    SimpleGrid movementGrid;
+    GridGenerator movementGrid;
+    bool hasEntered = false;
 
-    // Use this for initialization
     void Start ()
     {
-        MusicPlayer.instance.OnBeat += Move;
+        MusicPlayer.instance.OnBeat += NextMove;
     }
 	
-    public void Setup(Vector2 dir, Vector2 spawnPos, SimpleGrid grid)
+    public void Setup(Vector2 dir, Vector2 spawnPos, GridGenerator grid)
     {
         direction = dir;
         currentGridIndex = spawnPos;
         movementGrid = grid;
     }
 
-
-	// Update is called once per frame
-	void Move()
+	void NextMove()
     {
+        if (!hasEntered)
+        {
+            StartCoroutine(EntranceAnimation());
+            return;
+        }
+
         float nextPosX = currentGridIndex.x - direction.x;
         float nextPosY = currentGridIndex.y - direction.y;
 
@@ -36,11 +40,21 @@ public class Enemy : MonoBehaviour {
         }
         else
         {
-            Debug.Log("Boom");
-            GameObject.Destroy(this);
+            GameObject.Destroy(gameObject);
         }
 
         StartCoroutine(MoveAnimation(movementGrid.GetPosition(targetGridIndex.x, targetGridIndex.y)));
+    }
+
+    IEnumerator EntranceAnimation()
+    {
+        float timer = 0;
+        while (timer < MovementSpeed)
+        {
+            timer += Time.deltaTime;
+            yield return null;
+        }
+        hasEntered = true;
     }
 
     IEnumerator MoveAnimation(Vector2 targetPos)
@@ -59,6 +73,6 @@ public class Enemy : MonoBehaviour {
 
     private void OnDestroy()
     {
-        MusicPlayer.instance.OnBeat -= Move;
+        MusicPlayer.instance.OnBeat -= NextMove;
     }
 }

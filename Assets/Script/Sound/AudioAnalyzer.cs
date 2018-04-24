@@ -14,6 +14,8 @@ public class AudioAnalyzer : MonoBehaviour {
     public float dbValue { get { return _dbValue; } }
     float _pitchValue;
     public float pitchValue { get { return _pitchValue; } }
+    float _bassValue;
+    public float bassValue { get { return _bassValue; } }
     float[] _spectrum;
     public float[] spectrum { get { return _spectrum; } }
 
@@ -22,14 +24,26 @@ public class AudioAnalyzer : MonoBehaviour {
     private float[] samples;
     private float sampleRate;
 
-	void Start () {
+    public static AudioAnalyzer instance;
+    void Awake()
+    {
+        if (instance == null)
+            instance = this;
+
+        else if (instance != this)
+            Destroy(gameObject);
+    }
+
+    void Start ()
+    {
         source = GetComponent<AudioSource>();
         samples = new float[SAMPLE_SIZE];
         _spectrum = new float[SAMPLE_SIZE];
         sampleRate = AudioSettings.outputSampleRate;
     }
 	
-	void Update () {
+	void Update ()
+    {
         AnalyzeSound();
     }
 
@@ -70,6 +84,20 @@ public class AudioAnalyzer : MonoBehaviour {
             float dR = spectrum[(int)(maxN + 1)] / spectrum[(int)maxN];
             freqN += 0.5 * (dR * dR - dL * dL);
         }
+
         _pitchValue = (float)freqN * (sampleRate / 2) / SAMPLE_SIZE; // convert index to frequency precision lost a bit from casting
+
+        ///Not Accurate, Bass value
+        // Basically calculate the first 7 sample in order to try to understand a somewhat of bass drop
+        // _bassValue = 1 is considered a good bass drop
+        int j = 0;
+        float bassSum = 0;
+        float BassSampleAverage = SAMPLE_SIZE * 0.007f;
+        while (j < BassSampleAverage)
+        {
+            bassSum += spectrum[j];
+            j++;
+        }
+        _bassValue = bassSum;
     }
 }

@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SimpleGrid : MonoBehaviour {
+public class GridGenerator : MonoBehaviour {
+
+    public GameObject gridPrefab;
 
     public int gridSizeX { get { return _gridSizeX; } }
     int _gridSizeX;
@@ -14,11 +16,17 @@ public class SimpleGrid : MonoBehaviour {
     float _gridSpaceY;
     public Vector2 centerPosition { get { return _centerPosition; } }
     Vector2 _centerPosition;
-    public Vector2[][] grid { get { return _grid; } }
-    private Vector2[][] _grid;
+    public GameObject[][] grid { get { return _grid; } }
+    private GameObject[][] _grid;
+    public GameObject container { get { return _container; } }
+    GameObject _container;
 
-    public void CreateGrid(Vector2 center, int sizeX, int sizeY,float spaceX, float spaceY)
+    public void CreateGrid(string name, Vector2 center, GameObject gContainer, int sizeX, int sizeY,float spaceX, float spaceY)
     {
+        _container = new GameObject();
+        _container.transform.name = name;
+        _container.transform.parent = gContainer.transform;
+
         _centerPosition = center;
         _gridSizeX = sizeX;
         _gridSizeY = sizeY;
@@ -44,23 +52,28 @@ public class SimpleGrid : MonoBehaviour {
         float[] MovementX = new float[_gridSizeX];
         float[] MovementY = new float[_gridSizeY];
 
-        _grid = new Vector2[_gridSizeY][];
+        _grid = new GameObject[_gridSizeY][];
 
         for (int i = 0; i < _gridSizeY; i++)
         {
             MovementY[i] = minPoint.y + (i * _gridSpaceY);
-            _grid[i] = new Vector2[_gridSizeX];
+            _grid[i] = new GameObject[_gridSizeX];
+
             for (int j = 0; j < _gridSizeX; j++)
             {
-                
-                MovementX[j] = minPoint.x +(j * _gridSpaceX);
-                _grid[i][j] = new Vector2(MovementY[i], MovementX[j]);
-
-                GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                cube.transform.parent = transform;
-                cube.transform.position = new Vector3(MovementY[i], MovementX[j], 0);
+                MovementX[j] = minPoint.x + (j * _gridSpaceX);
+                GameObject cube = Instantiate(gridPrefab, new Vector3(MovementY[i], MovementX[j], 0), Quaternion.identity);
+                cube.transform.parent = container.transform;
+                _grid[i][j] = cube;
             }
         }
+    }
+
+    public GameObject SpawnOnGrid(GameObject element, Vector3 pos, Quaternion quaternion)
+    {
+        GameObject spawned = GameObject.Instantiate(element, pos, Quaternion.identity);
+        spawned.transform.parent = container.transform;
+        return spawned;
     }
 
     /// <summary>
@@ -72,13 +85,13 @@ public class SimpleGrid : MonoBehaviour {
     public Vector2 GetPosition(int x, int y)
     {
         Vector2 gridPosition = ClampIndexOnGrid(x, y);
-        return _grid[(int)gridPosition.x][(int)gridPosition.y];
+        return _grid[(int)gridPosition.x][(int)gridPosition.y].transform.position;
     }
 
     public Vector2 GetPosition(float x, float y)
     {
         Vector2 gridPosition = ClampIndexOnGrid((int)x, (int)y);
-        return _grid[(int)gridPosition.x][(int)gridPosition.y];
+        return _grid[(int)gridPosition.x][(int)gridPosition.y].transform.position;
     }
     /// <summary>
     /// Get the center position of the grid
@@ -87,7 +100,7 @@ public class SimpleGrid : MonoBehaviour {
     /// <returns>return the center position of the grid</returns>
     public Vector2 GetCenterPosition()
     {
-        return _grid[_gridSizeX / 2][_gridSizeY / 2];
+        return _grid[_gridSizeX / 2][_gridSizeY / 2].transform.position;
     }
 
     /// <summary>
@@ -121,7 +134,6 @@ public class SimpleGrid : MonoBehaviour {
     /// <returns>return true if movement is possible else false</returns>
     public bool IndexExist(int x, int y)
     {
-        return (x >= 0 ? x <= _gridSizeX ? true : false : false
-                                        && y >= 0 ? y <= _gridSizeY ? true : false : false);
+        return (x >= 0 && x < _gridSizeX) && (y >= 0 && y < _gridSizeY);
     }
 }

@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4412333816215492}
   - component: {fileID: 114537653806608380}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: gridGenerator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -51,7 +51,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54b39bc74c0cdb54fb030979496e6618, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GridSizeX: 5
-  GridSizeY: 5
-  GridSpaceX: 10
-  GridSpaceY: 10
+  gridPrefab: {fileID: 1078669973474448, guid: 67a358328af15ed40a8ae30f08c1ada2, type: 2}

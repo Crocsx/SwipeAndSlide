@@ -5,10 +5,10 @@ using UnityEngine;
 public class GridManager : MonoBehaviour {
 
     public static GridManager instance = null;
+    public GameObject container;
+    public GameObject gridGenerator;
 
-    public GameObject grid = null;
-
-    public Dictionary<string, SimpleGrid> grids = new Dictionary<string, SimpleGrid>();
+    public Dictionary<string, GridGenerator> grids = new Dictionary<string, GridGenerator>();
     void Awake()
     {
 
@@ -24,17 +24,17 @@ public class GridManager : MonoBehaviour {
     // Use this for initialization
     void SetupGrid()
     {
-        SimpleGrid pGrid = Instantiate(grid, new Vector3(0, 0, 0), Quaternion.identity).transform.GetComponent<SimpleGrid>();
-        pGrid.CreateGrid(Vector2.zero, 5, 5, 10, 10);
+        GridGenerator pGrid = Instantiate(gridGenerator, new Vector3(0, 0, 0), Quaternion.identity).transform.GetComponent<GridGenerator>();
+        pGrid.CreateGrid("movementGrid", Vector2.zero, container, 5, 5, 10, 10);
         grids.Add("movementGrid", pGrid);
 
-        SimpleGrid eGrid = Instantiate(grid, new Vector3(0, 0, 0), Quaternion.identity).transform.GetComponent<SimpleGrid>();
-        eGrid.CreateGrid(Vector2.zero, 7, 7, 10, 10);
+        GridGenerator eGrid = Instantiate(gridGenerator, new Vector3(0, 0, 0), Quaternion.identity).transform.GetComponent<GridGenerator>();
+        eGrid.CreateGrid("enemyGrid", Vector2.zero, container, 7, 7, 10, 10);
         grids.Add("enemyGrid", eGrid);
     }
 
     // Update is called once per frame
-    public SimpleGrid GetGrid (string name)
+    public GridGenerator GetGrid (string name)
     {
         if (grids.ContainsKey(name))
         {

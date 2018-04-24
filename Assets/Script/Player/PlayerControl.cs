@@ -11,7 +11,7 @@ public class PlayerControl : MonoBehaviour {
 
     private Vector2 currentGridIndex = new Vector2();
     private Vector2 targetGridIndex = new Vector2();
-    private SimpleGrid movementGrid;
+    private GridGenerator movementGrid;
 
     void Start ()
     {

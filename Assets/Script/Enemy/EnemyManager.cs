@@ -5,7 +5,7 @@ using System.Linq;
 
 public class EnemyManager : MonoBehaviour {
 
-    private SimpleGrid enemyGrid;
+    private GridGenerator enemyGrid;
     public GameObject enemy;
     Dictionary<Vector2, Vector2[]> spawnablePosition = new Dictionary<Vector2, Vector2[]>();
 
@@ -23,71 +23,45 @@ public class EnemyManager : MonoBehaviour {
     /// second loop will take the value for up and down
     /// </summary>
     void GetSpawnablePosition() {
-        Vector2[] coordX = { Vector2.up, Vector2.down };
-        Vector2[] coordY = { Vector2.left, Vector2.right };
+        var yLength = enemyGrid.grid[0].Length;
+        var xLength = enemyGrid.grid.Length;
 
-        for (int i = 0; i < coordY.Length; i++)
-        {
-            Vector2[] newArray = new Vector2[enemyGrid.grid[0].Length - 2];
-
-            if (coordY[i] == Vector2.left)
-            {
-                for (int j = 0; j < enemyGrid.grid[0].Length - 2; j++)
-                {
-                    newArray[j] = new Vector2(0, j+1);
-                }
-            }
-
-            if (coordY[i] == Vector2.right)
-            {
-                for (int j = 0; j < enemyGrid.grid[0].Length - 2; j++)
-                {
-                    newArray[j] = new Vector2(enemyGrid.grid[0].Length - 1, j + 1);
-                }
-            }
-            spawnablePosition.Add(coordY[i], newArray);
-        }
-        
-        for (int i = 0; i < coordY.Length; i++)
-        {
-            Vector2[] newArray = new Vector2[enemyGrid.grid.Length - 1];
-
-            if (coordX[i] == Vector2.down)
-            {
-                for (int j = 0; j <= enemyGrid.grid.Length - 2; j++)
-                {
-                    newArray[j] = new Vector2(j+1,0);
-                }
-            }
-            if (coordX[i] == Vector2.up)
-            {
-                for (int j = 0; j <= enemyGrid.grid.Length - 2; j++)
-                {
-                    newArray[j] = new Vector2(j + 1, enemyGrid.grid[0].Length - 1);
-                }
-            }
-
-            spawnablePosition.Add(coordX[i], newArray);
-        }
+        spawnablePosition.Add(Vector2.left, Enumerable.Range(1, yLength).Select(y => new Vector2(0, y)).ToArray());
+        spawnablePosition.Add(Vector2.right, Enumerable.Range(1, yLength).Select(y => new Vector2(xLength - 1, y)).ToArray());
+        spawnablePosition.Add(Vector2.down, Enumerable.Range(1, xLength).Select(x => new Vector2(x, 0)).ToArray());
+        spawnablePosition.Add(Vector2.up, Enumerable.Range(1, xLength).Select(x => new Vector2(x, yLength - 1)).ToArray());
     }
 
-    private void Update()
-    {
-        Camera.main.backgroundColor = Color.blue;
-    }
-
+    /// <summary>
+    /// Get a randomKey inside the spawnablePosition
+    /// get a random value inside spawnablePosition
+    /// get the position of the random location of the grid
+    /// 
+    /// Spawn a new Enemy inside the grid
+    /// 
+    /// Setup the new Enemy
+    /// </summary>
     private void Spawn()
-    { 
+    {
         Vector2 randKey = spawnablePosition.Keys.ElementAt((int)Random.Range(0, spawnablePosition.Keys.Count));
         int randValue = Random.Range(0, spawnablePosition[Vector2.up].Length - 1);
         Vector2 pos = enemyGrid.GetPosition(spawnablePosition[randKey][randValue].x, spawnablePosition[randKey][randValue].y);
 
-        Enemy script = GameObject.Instantiate(enemy, pos, Quaternion.identity).GetComponent<Enemy>();
+        Enemy newEnemy = enemyGrid.SpawnOnGrid(enemy, pos, Quaternion.identity).GetComponent<Enemy>();
 
-        script.transform.up = randKey;
-        script.Setup(randKey, spawnablePosition[randKey][randValue], enemyGrid);
+        newEnemy.transform.up = (Vector3)randKey;
 
-        Camera.main.backgroundColor = Color.red;
+        
+        float z = enemyGrid.container.transform.rotation.eulerAngles.z;
+
+        // fix the fact that it doesn't rotate correctly if down
+        int multi = 1;
+        if (randKey == Vector2.down)
+            multi = -1;
+
+        newEnemy.transform.eulerAngles = newEnemy.transform.eulerAngles + multi * new Vector3(0, 0, z);
+
+        newEnemy.Setup(randKey, spawnablePosition[randKey][randValue], enemyGrid);
     }
 
     private void OnDestroy()

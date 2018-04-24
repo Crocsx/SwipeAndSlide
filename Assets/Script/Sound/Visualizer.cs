@@ -15,6 +15,8 @@ public class Visualizer : MonoBehaviour {
     private Transform[] visualList;
     private float[] visualScale;
 
+    public Material material;
+
     // Use this for initialization
     void Start () {
         SpawnLine();
@@ -25,6 +27,13 @@ public class Visualizer : MonoBehaviour {
         UpdateVisual();
     }
 
+    /// <summary>
+    /// this is the function that spawn the line of cube
+    /// if we want to make different shape for the visualizer, this is the function to modify
+    /// 
+    /// Set the size of the array according to the nb of visual
+    /// for each visual spawn a cube at the given location
+    /// </summary>
     private void SpawnLine()
     {
         visualScale = new float[nbVisual];
@@ -33,12 +42,23 @@ public class Visualizer : MonoBehaviour {
         for(int i = 0; i < nbVisual; i++)
         {
             GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube) as GameObject;
+            cube.GetComponent<Renderer>().material = material;
             cube.transform.parent = transform;
             visualList[i] = cube.transform;
             visualList[i].position = Vector3.right * i * distVisual;
         }
     }
 
+    /// <summary>
+    /// Update the visualizer, a bar of cube that get scaled
+    /// 
+    /// Calculate the number or "sample" to include per each cube
+    /// loop trought each cube
+    /// Get the average size of the sample represented by the cube
+    /// reduce the Cube scale from precedent frame
+    /// clamp the cube to max and min value
+    /// Scale the cube
+    /// </summary>
     void UpdateVisual()
     {
         int visualIndex = 0;
@@ -54,7 +74,6 @@ public class Visualizer : MonoBehaviour {
                 sum += analyzer.spectrum[spectrumIndex];
                 spectrumIndex++;
                 j++;
-
             }
 
             float scaleY = sum / averageSize * scalerVisual;
