@@ -5,6 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour {
 
     public float MovementSpeed = 0.1f;
+    public TriangleCreator triangleCreator;
 
     Vector2 direction;
     Vector2 currentGridIndex;
@@ -28,7 +29,8 @@ public class Enemy : MonoBehaviour {
     {
         if (!hasEntered)
         {
-            StartCoroutine(EntranceAnimation());
+            triangleCreator.StartAnimation(MovementSpeed);
+            hasEntered = true;
             return;
         }
 
@@ -46,17 +48,6 @@ public class Enemy : MonoBehaviour {
         StartCoroutine(MoveAnimation(movementGrid.GetPosition(targetGridIndex.x, targetGridIndex.y)));
     }
 
-    IEnumerator EntranceAnimation()
-    {
-        float timer = 0;
-        while (timer < MovementSpeed)
-        {
-            timer += Time.deltaTime;
-            yield return null;
-        }
-        hasEntered = true;
-    }
-
     IEnumerator MoveAnimation(Vector2 targetPos)
     {
         Vector2 startPos = transform.position;
@@ -69,7 +60,7 @@ public class Enemy : MonoBehaviour {
             yield return null;
         }
         currentGridIndex = targetGridIndex;
-        transform.position = targetPos;
+        transform.position = movementGrid.GetPosition(targetGridIndex.x, targetGridIndex.y);
     }
 
     private void OnDestroy()

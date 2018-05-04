@@ -51,7 +51,6 @@ public class EnemyManager : MonoBehaviour {
 
         newEnemy.transform.up = (Vector3)randKey;
 
-        
         float z = enemyGrid.container.transform.rotation.eulerAngles.z;
 
         // fix the fact that it doesn't rotate correctly if down

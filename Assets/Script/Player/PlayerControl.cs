@@ -61,7 +61,7 @@ public class PlayerControl : MonoBehaviour {
             yield return null;
         }
         currentGridIndex = targetGridIndex;
-        transform.position = targetPos;
+        transform.position = movementGrid.GetPosition((int)targetGridIndex.x, (int)targetGridIndex.y);
     }
 
     private void OnDestroy()
