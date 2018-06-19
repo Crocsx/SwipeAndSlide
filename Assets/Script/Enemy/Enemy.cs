@@ -13,23 +13,31 @@ public class Enemy : MonoBehaviour {
     GridGenerator movementGrid;
     bool hasEntered = false;
 
+    EnemyManager eManager;
+
     void Start ()
     {
         MusicPlayer.instance.OnBeat += NextMove;
     }
 	
-    public void Setup(Vector2 dir, Vector2 spawnPos, GridGenerator grid)
+    public void Setup(EnemyManager manager, Vector2 dir, Vector2 spawnPos, GridGenerator grid)
     {
+        eManager = manager;
         direction = dir;
         currentGridIndex = spawnPos;
         movementGrid = grid;
     }
 
-	void NextMove()
+    /// <summary>
+    /// If it s the first move play triangle animation.
+    /// Else search possible position on the grid
+    ///  and get killed if no more movement are available
+    /// </summary>
+    void NextMove()
     {
         if (!hasEntered)
         {
-            triangleCreator.StartAnimation(MovementSpeed);
+            triangleCreator.TransformTriangle(MovementSpeed);
             hasEntered = true;
             return;
         }
@@ -42,12 +50,16 @@ public class Enemy : MonoBehaviour {
         }
         else
         {
+            eManager.Killed(this);
             GameObject.Destroy(gameObject);
         }
 
         StartCoroutine(MoveAnimation(movementGrid.GetPosition(targetGridIndex.x, targetGridIndex.y)));
     }
 
+    /// <summary>
+    /// Move according to the time
+    /// </summary>
     IEnumerator MoveAnimation(Vector2 targetPos)
     {
         Vector2 startPos = transform.position;

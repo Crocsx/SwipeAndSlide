@@ -60,7 +60,15 @@ public class EnemyManager : MonoBehaviour {
 
         newEnemy.transform.eulerAngles = newEnemy.transform.eulerAngles + multi * new Vector3(0, 0, z);
 
-        newEnemy.Setup(randKey, spawnablePosition[randKey][randValue], enemyGrid);
+        newEnemy.Setup(this, randKey, spawnablePosition[randKey][randValue], enemyGrid);
+    }
+
+    /// <summary>
+    /// Called by Enemy when he is killed
+    /// </summary>
+    public void Killed(Enemy enemy)
+    {
+        ScoreManager.instance.AddScore(ScoreManager.Score.EnemyKilled);
     }
 
     private void OnDestroy()
