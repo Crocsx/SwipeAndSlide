@@ -44,13 +44,13 @@ public class PlayerControl : MonoBehaviour {
         Vector3 swipeDirection = ToolBox.instance.ClosestDirection(direction);
         Vector3 faceDir = ToolBox.instance.ClosestDirection(-body.up);
 
-        float angle = ToolBox.instance.ClosestAngle2D(swipeDirection, lastDirection);
+        float angle = ToolBox.instance.ClosestAngle2D(-swipeDirection, lastDirection);
         body.Rotate(new Vector3(0, 0, angle), Space.Self);
 
-        float nextPosX = currentGridIndex.x - swipeDirection.x;
-        float nextPosY = currentGridIndex.y - swipeDirection.y;
+        float nextPosX = currentGridIndex.x + swipeDirection.x;
+        float nextPosY = currentGridIndex.y + swipeDirection.y;
 
-        lastDirection = swipeDirection;
+        lastDirection = -swipeDirection;
 
         targetGridIndex = movementGrid.ClampIndexOnGrid((int)nextPosX, (int)nextPosY);
         StartCoroutine(MoveAnimation(movementGrid.GetPosition((int)targetGridIndex.x, (int)targetGridIndex.y)));

@@ -152,7 +152,7 @@ public class TouchManager : MonoBehaviour
 
     void CheckIfIsSwipe(Touch touch, TouchStruct touchStruct)
     {
-        Vector2 heading = touchStruct.startPosition - touchStruct.info.position;
+        Vector2 heading = touchStruct.info.position - touchStruct.startPosition;
         float distance = heading.magnitude;
         if (distance < SWIPE_DISTANCE_DETECTION)
             return;

@@ -42,15 +42,9 @@ public class ToolBox : MonoBehaviour {
     {
         float ang = Vector3.Angle(swipeDir, lastDir);
 
-        if(lastDir == Vector2.down)
+        if(lastDir == Vector2.up)
         {
-            if (swipeDir == Vector2.left)
-                ang = -ang;
-        }
-
-        if (lastDir == Vector2.left)
-        {
-            if (swipeDir == Vector2.up)
+            if (swipeDir == Vector2.right)
                 ang = -ang;
         }
 
@@ -60,9 +54,15 @@ public class ToolBox : MonoBehaviour {
                 ang = -ang;
         }
 
-        if (lastDir == Vector2.up)
+        if (lastDir == Vector2.left)
         {
-            if (swipeDir == Vector2.right)
+            if (swipeDir == Vector2.up)
+                ang = -ang;
+        }
+
+        if (lastDir == Vector2.down)
+        {
+            if (swipeDir == Vector2.left)
                 ang = -ang;
         }
         return ang;
