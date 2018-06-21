@@ -395,6 +395,7 @@ GameObject:
   - component: {fileID: 125266342}
   - component: {fileID: 125266344}
   - component: {fileID: 125266343}
+  - component: {fileID: 125266345}
   m_Layer: 5
   m_Name: Stage4
   m_TagString: Untagged
@@ -416,10 +417,10 @@ RectTransform:
   m_Father: {fileID: 720804527}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -550, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 400, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &125266343
 MonoBehaviour:
@@ -454,6 +455,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 125266341}
+--- !u!114 &125266345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 125266341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f712f19c003485f44841e855b66af90d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &264970508
 GameObject:
   m_ObjectHideFlags: 0
@@ -464,6 +476,7 @@ GameObject:
   - component: {fileID: 264970509}
   - component: {fileID: 264970511}
   - component: {fileID: 264970510}
+  - component: {fileID: 264970512}
   m_Layer: 5
   m_Name: Stage1
   m_TagString: Untagged
@@ -485,10 +498,10 @@ RectTransform:
   m_Father: {fileID: 720804527}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 400, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &264970510
 MonoBehaviour:
@@ -523,6 +536,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 264970508}
+--- !u!114 &264970512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 264970508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f712f19c003485f44841e855b66af90d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &376501124
 GameObject:
   m_ObjectHideFlags: 0
@@ -775,6 +799,7 @@ GameObject:
   - component: {fileID: 720804527}
   - component: {fileID: 720804529}
   - component: {fileID: 720804528}
+  - component: {fileID: 720804530}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -837,6 +862,23 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 720804526}
+--- !u!114 &720804530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 720804526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b248ced1eea7ca646a77fe8ac15e6e71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slideTime: 0.5
+  elements:
+  - {fileID: 264970512}
+  - {fileID: 943605617}
+  - {fileID: 1371982328}
+  - {fileID: 125266345}
 --- !u!1 &852589563
 GameObject:
   m_ObjectHideFlags: 0
@@ -928,6 +970,7 @@ GameObject:
   - component: {fileID: 943605614}
   - component: {fileID: 943605616}
   - component: {fileID: 943605615}
+  - component: {fileID: 943605617}
   m_Layer: 5
   m_Name: Stage2
   m_TagString: Untagged
@@ -949,10 +992,10 @@ RectTransform:
   m_Father: {fileID: 720804527}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 550, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 400, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &943605615
 MonoBehaviour:
@@ -987,6 +1030,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 943605613}
+--- !u!114 &943605617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 943605613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f712f19c003485f44841e855b66af90d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1035734924
 GameObject:
   m_ObjectHideFlags: 0
@@ -1124,6 +1178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e61726e33f12cec48953c9ba14532236, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  carousel: {fileID: 720804530}
 --- !u!114 &1121645322
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1167,6 +1222,7 @@ GameObject:
   - component: {fileID: 1371982325}
   - component: {fileID: 1371982327}
   - component: {fileID: 1371982326}
+  - component: {fileID: 1371982328}
   m_Layer: 5
   m_Name: Stage3
   m_TagString: Untagged
@@ -1188,10 +1244,10 @@ RectTransform:
   m_Father: {fileID: 720804527}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 1100, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 400, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1371982326
 MonoBehaviour:
@@ -1226,6 +1282,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1371982324}
+--- !u!114 &1371982328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1371982324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f712f19c003485f44841e855b66af90d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2116953085
 GameObject:
   m_ObjectHideFlags: 0
