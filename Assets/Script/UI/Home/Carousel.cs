@@ -113,6 +113,22 @@ public class Carousel : MonoBehaviour {
         return new Vector2(rectTrans.rect.width, rectTrans.rect.height);
     }
 
+    /// <summary>
+    /// return the  value of the selected Element in Carousel 
+    /// </summary>
+    /// <returns>String value of the element selected</returns>
+    public string GetSelectedPanelValue()
+    {
+        int l = elements.Length;
+        for (int i = 0; i < l; i++)
+        {
+            if (elements[i].isSelected)
+            {
+                return elements[i].value;
+            }
+        }
+        return "";
+    }
 
     private void OnDestroy()
     {

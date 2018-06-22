@@ -7,6 +7,8 @@ public class Enemy : MonoBehaviour {
     public float MovementSpeed = 0.1f;
     public TriangleCreator triangleCreator;
 
+    public GameObject effectExplosion;
+
     Vector2 direction;
     Vector2 currentGridIndex;
     Vector2 targetGridIndex;
@@ -73,6 +75,21 @@ public class Enemy : MonoBehaviour {
         }
         currentGridIndex = targetGridIndex;
         transform.position = movementGrid.GetPosition(targetGridIndex.x, targetGridIndex.y);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.transform.CompareTag("Player"))
+        {
+            collision.transform.GetComponent<Player>().TakeDamage();
+            Explode();
+        }
+    }
+
+    void Explode()
+    {
+        Instantiate(effectExplosion, transform.position, Quaternion.identity);
+        Destroy(gameObject);
     }
 
     private void OnDestroy()

@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class CarouselElement : MonoBehaviour {
 
+    public string value;
+
     Carousel carousel;
     RectTransform rectTrans;
+    public bool isSelected {get { return (index == 1); } }
     public int index { get { return _index; } set { _index = value; } }
     int _index;
 
