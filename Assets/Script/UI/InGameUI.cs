@@ -62,11 +62,11 @@ public class InGameUI : MonoBehaviour {
     // Update is called once per frame
     void LoopPauseMenu()
     {
-        scoreText.text = ScoreManager.instance.score.ToString();
     }
 
     void LoopIGMenu()
     {
+        scoreText.text = ScoreManager.instance.score.ToString();
     }
 
     private void Update()

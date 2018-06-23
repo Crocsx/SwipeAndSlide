@@ -5,6 +5,7 @@ using UnityEngine;
 public class CarouselElement : MonoBehaviour {
 
     public string value;
+    public AudioClip songClip;
 
     Carousel carousel;
     RectTransform rectTrans;

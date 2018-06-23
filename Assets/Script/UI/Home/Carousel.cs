@@ -6,6 +6,11 @@ public class Carousel : MonoBehaviour {
 
     public delegate void onResize(Vector2 screenSize, Vector2 PanelSize);
     public event onResize OnResize;
+    public delegate void onSwipe(int dir, CarouselElement selected);
+    public event onSwipe OnSwipe;
+
+    public CarouselElement selected { get { return _selected; } }
+    CarouselElement _selected;
     public float slideTime = 0.3f;
 
     RectTransform rectTrans;
@@ -46,7 +51,7 @@ public class Carousel : MonoBehaviour {
         {
             positions[i] = new Vector2(pSize.x * (i - 1), rectTrans.anchoredPosition.y);
             elements[i].Setup(this, pSize.x, positions[i]);
-            elements[i].index = i;
+            SetElementIndex(elements[i], i);
         }
     }
 
@@ -82,10 +87,21 @@ public class Carousel : MonoBehaviour {
             {
                 elements[i].SetPosition(positions[newIndex]);
             }
-            elements[i].index = newIndex;
+
+            SetElementIndex(elements[i], newIndex);
         }
+
+        if (OnSwipe != null)
+            OnSwipe(value, selected);
     }
 
+    void SetElementIndex(CarouselElement elem, int index)
+    {
+        elem.index = index;
+
+        if (elem.isSelected)
+            _selected = elem;
+    }
     /// <summary>
     /// Check if the resolution of the screen has changed
     /// if so, call OnResize Function and recalibrate carousel
@@ -111,23 +127,6 @@ public class Carousel : MonoBehaviour {
     public Vector2 GetPanelSize()
     {
         return new Vector2(rectTrans.rect.width, rectTrans.rect.height);
-    }
-
-    /// <summary>
-    /// return the  value of the selected Element in Carousel 
-    /// </summary>
-    /// <returns>String value of the element selected</returns>
-    public string GetSelectedPanelValue()
-    {
-        int l = elements.Length;
-        for (int i = 0; i < l; i++)
-        {
-            if (elements[i].isSelected)
-            {
-                return elements[i].value;
-            }
-        }
-        return "";
     }
 
     private void OnDestroy()
