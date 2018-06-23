@@ -24,7 +24,7 @@ public class GridRotator : MonoBehaviour {
         {
             currentStep = InversionStep;
             side = -side;
-            GetComponent<Rigidbody2D>().AddTorque(side * Random.Range(2, 3), ForceMode2D.Impulse);
+            GetComponent<Rigidbody2D>().AddTorque(side * Random.Range(2, 3) * (ScoreManager.instance.score/ 1000), ForceMode2D.Impulse);
         }
     }
 }

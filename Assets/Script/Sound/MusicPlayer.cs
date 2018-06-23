@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Video;
 
 public class MusicPlayer : MonoBehaviour {
 
-    public AudioClip music;
+    public AudioClip musicC;
+    public VideoClip videoC;
     public int defaultBPM;
-    AudioSource source;
+    AudioSource mSource;
+    VideoPlayer vSource;
 
     public delegate void onBeat();
     public event onBeat OnBeat;
@@ -14,6 +17,8 @@ public class MusicPlayer : MonoBehaviour {
     private float currentBeat;
     private int currentBPM;
     private float timer;
+
+    private bool Started;
 
     public static MusicPlayer instance;
     void Awake()
@@ -27,13 +32,63 @@ public class MusicPlayer : MonoBehaviour {
 
     void Start ()
     {
+        Started = false;
         currentBPM = defaultBPM;
         currentBeat = 60.0f / currentBPM;
+        mSource = transform.GetComponent<AudioSource>();
+        vSource = transform.GetComponent<VideoPlayer>();
+        SetClipSource();
     }
 	
-	void Update () {
-        CheckBeat();
+    /// <summary>
+    /// Set the current clip, if video or music
+    /// </summary>
+    void SetClipSource()
+    {
+        if (musicC != null)
+            mSource.clip = musicC;
+        if (videoC != null)
+        {
+            vSource.clip = videoC;
+            vSource.SetTargetAudioSource(0,mSource);
+        }
+    }
+    
+
+    void Update () {
+        if(Started)
+            CheckBeat();
 	}
+
+    public void Play()
+    {
+        Started = true;
+
+        if (musicC != null)
+            mSource.Play();
+        if (videoC != null)
+            vSource.Play();
+    }
+
+    public void Pause()
+    {
+        Started = false;
+
+        if (musicC != null)
+            mSource.Pause();
+        if (videoC != null)
+            vSource.Pause();
+    }
+
+    public void Stop()
+    {
+        Started = false;
+
+        if (musicC != null)
+            mSource.Stop();
+        if (videoC != null)
+            vSource.Stop();
+    }
 
     /// <summary>
     /// Check if it is time to call for the event Beat

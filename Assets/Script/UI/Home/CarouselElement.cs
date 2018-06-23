@@ -15,10 +15,6 @@ public class CarouselElement : MonoBehaviour {
     void Start () {
         rectTrans = transform.GetComponent<RectTransform>();
     }
-	
-	void Update () {
-		
-	}
 
     public void Setup(Carousel pCarousel, float w, Vector2 pos)
     {
@@ -29,12 +25,12 @@ public class CarouselElement : MonoBehaviour {
 
     public void SetWidth(float w)
     {
-        rectTrans.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, w);
+        transform.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, w);
     }
 
     public void SetPosition(Vector2 targetPos)
     {
-        rectTrans.anchoredPosition = new Vector2(targetPos.x, targetPos.y);
+        transform.GetComponent<RectTransform>().anchoredPosition = new Vector2(targetPos.x, targetPos.y);
     }
 
     public void SlideToPosition(Vector2 targetPos)
