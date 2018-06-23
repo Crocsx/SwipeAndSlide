@@ -81,7 +81,7 @@ public class Carousel : MonoBehaviour {
             if ((value < 0 && (newIndex == 0 || newIndex == 1)) || 
                 (value > 0 && (newIndex == 1 || newIndex == 2)))
             {
-                elements[i].SlideToPosition(positions[newIndex]);
+                elements[i].SlideToPosition(value, positions[newIndex]);
             }
             else
             {
@@ -97,7 +97,8 @@ public class Carousel : MonoBehaviour {
 
     void SetElementIndex(CarouselElement elem, int index)
     {
-        elem.index = index;
+
+        elem.setIndex(index);
 
         if (elem.isSelected)
             _selected = elem;

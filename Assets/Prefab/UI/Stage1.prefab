@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 224584947396291430}
   - component: {fileID: 222705242792792276}
   - component: {fileID: 114428140783336542}
+  - component: {fileID: 95398606846769392}
   m_Layer: 5
   m_Name: SongTitle
   m_TagString: Untagged
@@ -39,7 +40,7 @@ GameObject:
   - component: {fileID: 199233221175578074}
   - component: {fileID: 198039212767953556}
   m_Layer: 5
-  m_Name: GameObject
+  m_Name: Particle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -55,6 +56,7 @@ GameObject:
   - component: {fileID: 224409626331402916}
   - component: {fileID: 222122221906683080}
   - component: {fileID: 114538955517595638}
+  - component: {fileID: 114959573743958922}
   m_Layer: 5
   m_Name: Stage1
   m_TagString: Untagged
@@ -72,13 +74,50 @@ GameObject:
   - component: {fileID: 224951639062482324}
   - component: {fileID: 222711177817361116}
   - component: {fileID: 114324730689252892}
+  - component: {fileID: 95333812925992896}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!95 &95333812925992896
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1650468132670934}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 32d17d2936f3a6f43a4ff35080e4d408, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!95 &95398606846769392
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1118023196081778}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 32d17d2936f3a6f43a4ff35080e4d408, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114324730689252892
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -138,9 +177,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Cartoon - On & On (feat. Daniel Levi)
-
-'
+  m_Text: Cartoon - On & On (feat. Daniel Levi)
 --- !u!114 &114538955517595638
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -152,8 +189,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f712f19c003485f44841e855b66af90d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value: Stage1
-  songClip: {fileID: 8300000, guid: f792c54f1c977c642bf1e2e2b9cfc8d5, type: 3}
+  value: Stage2
+  songClip: {fileID: 8300000, guid: d089119968dfac249b7f19dfdfbfedd2, type: 3}
+--- !u!114 &114959573743958922
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1611508743787908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dc5200045169cb4692928ddf6cef975, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SongTitlePanel: {fileID: 1650468132670934}
+  SongTitlePanelAnimator: {fileID: 0}
+  ParticlePanel: {fileID: 198039212767953556}
 --- !u!198 &198039212767953556
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -165,8 +216,8 @@ ParticleSystem:
   simulationSpeed: 1
   stopAction: 0
   looping: 1
-  prewarm: 0
-  playOnAwake: 1
+  prewarm: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -783,7 +834,7 @@ ParticleSystem:
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
     donutRadius: 0.2
-    m_Position: {x: 0, y: 5, z: 0}
+    m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: -180}
     m_Scale: {x: 3, y: 1, z: 1}
     placementMode: 0
@@ -4701,7 +4752,7 @@ ParticleSystemRenderer:
   m_ReflectionProbeUsage: 0
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: df1108d523a0fa948925e9dc84d7fb43, type: 2}
+  - {fileID: 10756, guid: 0000000000000000e000000000000000, type: 0}
   - {fileID: 2100000, guid: df1108d523a0fa948925e9dc84d7fb43, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -4792,10 +4843,10 @@ RectTransform:
   m_Father: {fileID: 224409626331402916}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224584947396291430
 RectTransform:
@@ -4831,6 +4882,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 45.475002}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 45, y: 162}
+  m_AnchoredPosition: {x: 36, y: 153}
   m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}

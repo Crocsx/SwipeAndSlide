@@ -346,48 +346,17 @@ Prefab:
       propertyPath: m_Name
       value: Stage2
       objectReference: {fileID: 0}
-    - target: {fileID: 114538955517595638, guid: 119ea9640ad0cab40b203aae00211089,
-        type: 2}
-      propertyPath: value
-      value: Stage2
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_Color.r
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_Color.g
-      value: 0.1925435
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114538955517595638, guid: 119ea9640ad0cab40b203aae00211089,
-        type: 2}
-      propertyPath: songClip
-      value: 
-      objectReference: {fileID: 8300000, guid: d089119968dfac249b7f19dfdfbfedd2, type: 3}
-    - target: {fileID: 224584947396291430, guid: 119ea9640ad0cab40b203aae00211089,
-        type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114428140783336542, guid: 119ea9640ad0cab40b203aae00211089,
-        type: 2}
-      propertyPath: m_Text
-      value: 'Michael White - Venus feat MYLK
-
-
-'
-      objectReference: {fileID: 0}
-    - target: {fileID: 224584947396291430, guid: 119ea9640ad0cab40b203aae00211089,
+    - target: {fileID: 224951639062482324, guid: 119ea9640ad0cab40b203aae00211089,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 36
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 0}
+    - target: {fileID: 224951639062482324, guid: 119ea9640ad0cab40b203aae00211089,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 153
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 119ea9640ad0cab40b203aae00211089, type: 2}
   m_IsPrefabParent: 0
 --- !u!114 &79991051 stripped
@@ -651,27 +620,40 @@ Prefab:
       propertyPath: m_Name
       value: Stage3
       objectReference: {fileID: 0}
-    - target: {fileID: 114538955517595638, guid: 119ea9640ad0cab40b203aae00211089,
+    - target: {fileID: 199233221175578074, guid: 119ea9640ad0cab40b203aae00211089,
         type: 2}
-      propertyPath: value
-      value: Stage3
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 198039212767953556, guid: 119ea9640ad0cab40b203aae00211089,
+        type: 2}
+      propertyPath: playOnAwake
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_Color.b
+    - target: {fileID: 198039212767953556, guid: 119ea9640ad0cab40b203aae00211089,
+        type: 2}
+      propertyPath: prewarm
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_Color.r
-      value: 0
+    - target: {fileID: 114959573743958922, guid: 119ea9640ad0cab40b203aae00211089,
+        type: 2}
+      propertyPath: ParticlePanel
+      value: 
+      objectReference: {fileID: 1950989683}
+    - target: {fileID: 114428140783336542, guid: 119ea9640ad0cab40b203aae00211089,
+        type: 2}
+      propertyPath: m_Text
+      value: LOLOLOL
       objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_Color.g
-      value: 0.96238685
+    - target: {fileID: 224951639062482324, guid: 119ea9640ad0cab40b203aae00211089,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 36
       objectReference: {fileID: 0}
-    - target: {fileID: 224584947396291430, guid: 119ea9640ad0cab40b203aae00211089,
+    - target: {fileID: 224951639062482324, guid: 119ea9640ad0cab40b203aae00211089,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 153
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 119ea9640ad0cab40b203aae00211089, type: 2}
@@ -738,38 +720,6 @@ MonoBehaviour:
   - {fileID: 239874533}
   - {fileID: 79991051}
   - {fileID: 56768791}
---- !u!1 &752260172 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1611508743787908, guid: 119ea9640ad0cab40b203aae00211089,
-    type: 2}
-  m_PrefabInternal: {fileID: 79991050}
---- !u!114 &752260173
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 752260172}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 0.20784314}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
 --- !u!1 &852589563
 GameObject:
   m_ObjectHideFlags: 0
@@ -918,7 +868,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Swipe&Slide
+  m_Text: 'BeatCircle
 
 '
 --- !u!222 &1027309974
@@ -1116,28 +1066,16 @@ Prefab:
       propertyPath: m_Name
       value: Stage4
       objectReference: {fileID: 0}
-    - target: {fileID: 114538955517595638, guid: 119ea9640ad0cab40b203aae00211089,
+    - target: {fileID: 114428140783336542, guid: 119ea9640ad0cab40b203aae00211089,
         type: 2}
-      propertyPath: value
-      value: Stage4
+      propertyPath: m_Text
+      value: LALALALALALALAA
       objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_Color.r
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_Color.b
-      value: 0.26159763
-      objectReference: {fileID: 0}
-    - target: {fileID: 224584947396291430, guid: 119ea9640ad0cab40b203aae00211089,
+    - target: {fileID: 199233221175578074, guid: 119ea9640ad0cab40b203aae00211089,
         type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 470a8b9cc8670284ba66bf1856f9ced9, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 119ea9640ad0cab40b203aae00211089, type: 2}
   m_IsPrefabParent: 0
@@ -1510,9 +1448,19 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 199233221175578074, guid: 119ea9640ad0cab40b203aae00211089,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: df1108d523a0fa948925e9dc84d7fb43, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 119ea9640ad0cab40b203aae00211089, type: 2}
   m_IsPrefabParent: 0
+--- !u!198 &1950989683 stripped
+ParticleSystem:
+  m_PrefabParentObject: {fileID: 198039212767953556, guid: 119ea9640ad0cab40b203aae00211089,
+    type: 2}
+  m_PrefabInternal: {fileID: 541320128}
 --- !u!1 &2132250655
 GameObject:
   m_ObjectHideFlags: 0

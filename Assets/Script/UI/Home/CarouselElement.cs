@@ -4,12 +4,20 @@ using UnityEngine;
 
 public class CarouselElement : MonoBehaviour {
 
+    public delegate void onSelected(CarouselElement selected);
+    public event onSelected OnSelected;
+    public delegate void onUnselected(CarouselElement selected);
+    public event onUnselected OnUnselected;
+    public delegate void onSlide(int side);
+    public event onSlide OnSlide;
+
     public string value;
     public AudioClip songClip;
 
-    Carousel carousel;
     RectTransform rectTrans;
+    Carousel carousel;
     public bool isSelected {get { return (index == 1); } }
+    bool wasSelected;
     public int index { get { return _index; } set { _index = value; } }
     int _index;
 
@@ -34,9 +42,31 @@ public class CarouselElement : MonoBehaviour {
         transform.GetComponent<RectTransform>().anchoredPosition = new Vector2(targetPos.x, targetPos.y);
     }
 
-    public void SlideToPosition(Vector2 targetPos)
+    public void SlideToPosition(int dir, Vector2 targetPos)
     {
         StartCoroutine(Slide(targetPos));
+
+        if (OnSlide != null)
+            OnSlide(dir);
+    }
+
+    public void setIndex(int nIndex)
+    {
+        index = nIndex;
+
+        if (isSelected)
+        {
+            if (OnSelected != null)
+                OnSelected(this);
+            wasSelected = true;
+        }
+        else if (wasSelected)
+        {
+            if (OnUnselected != null)
+                OnUnselected(this);
+            wasSelected = false;
+        }
+        
     }
 
     IEnumerator Slide(Vector2 targetPos)
