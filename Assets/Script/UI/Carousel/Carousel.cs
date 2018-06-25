@@ -21,11 +21,14 @@ public class Carousel : MonoBehaviour {
     public CarouselElement[] elements;
     Vector2[] positions;
 
+    private void Awake()
+    {
+        rectTrans = GetComponent<RectTransform>();
+    }
     void Start() {
-        rectTrans = transform.GetComponent<RectTransform>();
+        TouchManager.instance.OnSwipe += SwipeAction;
         resolution = new Vector2(Screen.width, Screen.height);
         SetupCarousel();
-        TouchManager.instance.OnSwipe += SwipeAction;
     }
 
     void SwipeAction(TouchStruct touch, Vector2 direction)

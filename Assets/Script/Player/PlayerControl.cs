@@ -18,12 +18,21 @@ public class PlayerControl : MonoBehaviour {
 
     private Vector2 lastDirection = Vector2.down;
 
+    private void OnEnable()
+    {
+        TouchManager.instance.OnSwipe += Movement;
+    }
+
+    private void OnDisable()
+    {
+        TouchManager.instance.OnSwipe -= Movement;
+    }
+
     void Start ()
     {
         body = transform.GetChild(0);
         triangleCreator = body.GetComponent<TriangleCreator>();
 
-        TouchManager.instance.OnSwipe += Movement;
         movementGrid = GridManager.instance.GetGrid("movementGrid");
         currentGridIndex = movementGrid.GetCenterIndex();
         transform.position = movementGrid.GetCenterPosition();

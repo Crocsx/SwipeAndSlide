@@ -17,11 +17,16 @@ public class Enemy : MonoBehaviour {
 
     EnemyManager eManager;
 
-    void Start ()
+    void OnEnable ()
     {
         MusicPlayer.instance.OnBeat += NextMove;
     }
-	
+
+    void OnDisable()
+    {
+        MusicPlayer.instance.OnBeat -= NextMove;
+    }
+
     public void Setup(EnemyManager manager, Vector2 dir, Vector2 spawnPos, GridGenerator grid)
     {
         eManager = manager;

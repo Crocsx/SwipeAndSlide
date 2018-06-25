@@ -8,30 +8,39 @@ public class CarouselElementCustom : MonoBehaviour {
     public ParticleSystem ParticlePanel;
     public AudioSource audioSource;
 
-    Animator SongTitlePanelAnimator;
+    Animator pAnimator;
     Carousel cCarousel;
     CarouselElement cElement;
 
-    bool animDone;
-
-    // Use this for initialization
-    void Start ()
+    private void OnEnable()
     {
-        SongTitlePanelAnimator = SongTitlePanel.GetComponent<Animator>();
         cElement = transform.GetComponent<CarouselElement>();
         cElement.OnSlide += OnCarouselSlide;
         cElement.OnSelected += StartPanelAnimations;
         cElement.OnUnselected += StopPanelAnimations;
-        SongTitlePanel.SetActive(false);     
+    }
+
+    private void OnDisable()
+    {
+        cElement = transform.GetComponent<CarouselElement>();
+        cElement.OnSlide -= OnCarouselSlide;
+        cElement.OnSelected -= StartPanelAnimations;
+        cElement.OnUnselected -= StopPanelAnimations;
+        StopPanelAnimations(cElement);
+    }
+
+    // Use this for initialization
+    void Awake ()
+    {
+        pAnimator = GetComponent<Animator>(); 
     }
 	
 	// Update is called once per frame
 	void OnCarouselSlide(int dir)
     {
         SongTitlePanel.SetActive(true);
-        SongTitlePanelAnimator.SetBool("selected", cElement.isSelected);
-        SongTitlePanelAnimator.SetInteger("direction", dir);
-        animDone = true;
+        pAnimator.SetBool("selected", cElement.isSelected);
+        pAnimator.SetInteger("direction", dir);
     }
 
     void TrailerSong(AudioClip song)
@@ -40,18 +49,10 @@ public class CarouselElementCustom : MonoBehaviour {
         audioSource.Play();
     }
 
-    void Update()
-    {
-        if (animDone)
-        {
-            OnEndAnim();
-        }
-    }
 
-    void OnEndAnim()
+    public void OnEndAnim()
     {
-        SongTitlePanelAnimator.SetInteger("direction", 0);
-        animDone = false;
+        pAnimator.SetInteger("direction", 0);
     }
 
     void StartPanelAnimations(CarouselElement selected)

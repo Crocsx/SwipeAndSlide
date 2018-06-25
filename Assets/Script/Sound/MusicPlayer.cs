@@ -28,15 +28,16 @@ public class MusicPlayer : MonoBehaviour {
 
         else if (instance != this)
             Destroy(gameObject);
+
+        mSource = GetComponent<AudioSource>();
+        vSource = GetComponent<VideoPlayer>();
+        Started = false;
+        currentBPM = defaultBPM;
+        currentBeat = 60.0f / currentBPM;
     }
 
     void Start ()
     {
-        Started = false;
-        currentBPM = defaultBPM;
-        currentBeat = 60.0f / currentBPM;
-        mSource = transform.GetComponent<AudioSource>();
-        vSource = transform.GetComponent<VideoPlayer>();
         SetClipSource();
     }
 	

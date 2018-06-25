@@ -9,10 +9,19 @@ public class EnemyManager : MonoBehaviour {
     public GameObject enemy;
     Dictionary<Vector2, Vector2[]> spawnablePosition = new Dictionary<Vector2, Vector2[]>();
 
+    private void OnEnable()
+    {
+        MusicPlayer.instance.OnBeat += Spawn;
+    }
+
+    private void OnDisable()
+    {
+        MusicPlayer.instance.OnBeat -= Spawn;
+    }
+
     void Start()
     {
         enemyGrid = GridManager.instance.GetGrid("enemyGrid");
-        MusicPlayer.instance.OnBeat += Spawn;
         GetSpawnablePosition();
     }
 

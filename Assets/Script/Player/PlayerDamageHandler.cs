@@ -26,5 +26,7 @@ public class PlayerDamageHandler : MonoBehaviour {
     {
         if (OnDeath != null)
             OnDeath();
+
+        StageManager.instance.EndStage();
     }
 }

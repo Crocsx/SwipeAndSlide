@@ -5,7 +5,7 @@ using UnityEngine;
 public class ShakeCamera : MonoBehaviour
 {
     Quaternion rot;
-    private void Start()
+    private void Awake()
     {
         //MusicPlayer.instance.OnBeat += AskShake;
         Quaternion rot = transform.rotation;

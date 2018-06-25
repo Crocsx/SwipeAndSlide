@@ -32,13 +32,14 @@ public class AudioAnalyzer : MonoBehaviour {
 
         else if (instance != this)
             Destroy(gameObject);
+
+        source = GetComponent<AudioSource>();
+        samples = new float[SAMPLE_SIZE];
+        _spectrum = new float[SAMPLE_SIZE];
     }
 
     void Start ()
     {
-        source = GetComponent<AudioSource>();
-        samples = new float[SAMPLE_SIZE];
-        _spectrum = new float[SAMPLE_SIZE];
         sampleRate = AudioSettings.outputSampleRate;
     }
 	

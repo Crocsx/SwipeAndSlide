@@ -20,17 +20,8 @@ public class ScoreManager : MonoBehaviour {
 
         else if (instance != this)
             Destroy(gameObject);
-
-        DontDestroyOnLoad(transform.gameObject);
     }
     #endregion
-
-
-    // Use this for initialization
-    void Start()
-    {
-
-    }
 
     // Use this for initialization
     public void AddScore (Score value) {

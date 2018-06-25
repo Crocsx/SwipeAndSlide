@@ -7,9 +7,9 @@ public class Player : MonoBehaviour {
     PlayerControl pControl;
     PlayerDamageHandler pDamageHandler;
 
-    void Start () {
-        pControl = transform.GetComponent<PlayerControl>();
-        pDamageHandler = transform.GetComponent<PlayerDamageHandler>();
+    void Awake () {
+        pControl = GetComponent<PlayerControl>();
+        pDamageHandler = GetComponent<PlayerDamageHandler>();
     }
 
 	public void TakeDamage()

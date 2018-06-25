@@ -9,9 +9,10 @@ public class GridRotator : MonoBehaviour {
     int currentStep = 8;
     int side = 1;
 
-    void Start () {
-        grid = GridManager.instance.GetGrid("movementGrid");
+    void Start ()
+    {
         MusicPlayer.instance.OnBeat += Rotator;
+        grid = GridManager.instance.GetGrid("movementGrid");
     }
 	
     /// <summary>
@@ -26,5 +27,10 @@ public class GridRotator : MonoBehaviour {
             side = -side;
             GetComponent<Rigidbody2D>().AddTorque(side * Random.Range(2, 3) * (ScoreManager.instance.score/ 1000), ForceMode2D.Impulse);
         }
+    }
+
+    private void OnDestroy()
+    {
+        MusicPlayer.instance.OnBeat -= Rotator;
     }
 }

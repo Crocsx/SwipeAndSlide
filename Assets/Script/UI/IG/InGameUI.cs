@@ -12,11 +12,18 @@ public class InGameUI : MonoBehaviour {
     public delegate void Loop();
     Loop updateLoop;
 
-    // Use this for initialization
-    void Start () {
+    private void OnEnable()
+    {
         GameManager.instance.OnPauseGame += OnPause;
         GameManager.instance.OnResumeGame += OnResume;
         GameManager.instance.OnStartGame += OnStart;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.instance.OnPauseGame -= OnPause;
+        GameManager.instance.OnResumeGame -= OnResume;
+        GameManager.instance.OnStartGame -= OnStart;
     }
 
     private void OnStart()

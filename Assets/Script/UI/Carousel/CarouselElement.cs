@@ -21,7 +21,7 @@ public class CarouselElement : MonoBehaviour {
     public int index { get { return _index; } set { _index = value; } }
     int _index;
 
-    void Start () {
+    void Awake () {
         rectTrans = transform.GetComponent<RectTransform>();
     }
 

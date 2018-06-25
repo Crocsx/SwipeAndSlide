@@ -18,17 +18,25 @@ public class StageManager : MonoBehaviour {
     }
     #endregion
 
+    private void OnEnable()
+    {
+        TouchManager.instance.OnSwipe += StartStage;
+    }
+
+    private void OnDisable()
+    {
+        TouchManager.instance.OnSwipe -= StartStage;
+    }
+
     // Use this for initialization
     void Start () {
         GameManager.instance.InitGame();
-        TouchManager.instance.OnSwipe += StartStage;
     }
 
     void StartStage(TouchStruct touch, Vector2 direction)
     {
         GameManager.instance.StartGame();
         MusicPlayer.instance.Play();
-        TouchManager.instance.OnSwipe -= StartStage;
     }
 
     public void PauseStage()
@@ -46,6 +54,7 @@ public class StageManager : MonoBehaviour {
 
     public void EndStage()
     {
+        GameManager.instance.ResumeGame();
         GameManager.instance.FinishGame();
     }
 
@@ -59,11 +68,5 @@ public class StageManager : MonoBehaviour {
     {
         EndStage();
         GameManager.instance.LoadScene("Menu");
-    }
-
-
-    void OnDestroy ()
-    {
-        TouchManager.instance.OnSwipe -= StartStage;
     }
 }
