@@ -147,18 +147,18 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 36
+    m_FontSize: 58
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
-    m_MaxSize: 40
+    m_MaxSize: 58
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Cartoon - On & On (feat. Daniel Levi)
+  m_Text: Unknown Brain - Why Do I feat Bri Tolani
 --- !u!114 &114538955517595638
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -170,8 +170,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f712f19c003485f44841e855b66af90d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value: Stage2
-  songClip: {fileID: 8300000, guid: d089119968dfac249b7f19dfdfbfedd2, type: 3}
+  value: Stage1
+  songClip: {fileID: 8300000, guid: f792c54f1c977c642bf1e2e2b9cfc8d5, type: 3}
 --- !u!114 &114959573743958922
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -184,8 +184,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SongTitlePanel: {fileID: 1650468132670934}
-  SongTitlePanelAnimator: {fileID: 0}
   ParticlePanel: {fileID: 198039212767953556}
+  audioSource: {fileID: 0}
 --- !u!198 &198039212767953556
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -4733,7 +4733,7 @@ ParticleSystemRenderer:
   m_ReflectionProbeUsage: 0
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: df1108d523a0fa948925e9dc84d7fb43, type: 2}
+  - {fileID: 2100000, guid: 470a8b9cc8670284ba66bf1856f9ced9, type: 2}
   - {fileID: 2100000, guid: df1108d523a0fa948925e9dc84d7fb43, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -4809,7 +4809,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 400, y: 0}
+  m_SizeDelta: {x: 1080, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224569985875051988
 RectTransform:
@@ -4845,7 +4845,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -200, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224951639062482324
 RectTransform:
@@ -4863,6 +4863,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 45.475002}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -160, y: 160}
-  m_SizeDelta: {x: 700, y: 130}
+  m_AnchoredPosition: {x: -1606, y: -723}
+  m_SizeDelta: {x: 1800, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
