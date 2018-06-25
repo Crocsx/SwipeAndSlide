@@ -43,6 +43,25 @@ public class StageManager : MonoBehaviour {
         MusicPlayer.instance.Play();
     }
 
+
+    public void EndStage()
+    {
+        GameManager.instance.FinishGame();
+    }
+
+    public void ReplayStage()
+    {
+        EndStage();
+        GameManager.instance.ReloadScene();
+    }
+
+    public void BackMenu()
+    {
+        EndStage();
+        GameManager.instance.LoadScene("Menu");
+    }
+
+
     void OnDestroy ()
     {
         TouchManager.instance.OnSwipe -= StartStage;

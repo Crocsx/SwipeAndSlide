@@ -6,24 +6,27 @@ using UnityEngine.UI;
 public class HomeMenu : MonoBehaviour
 {
     public Carousel carousel;
-    public AudioSource audioSource;
+    public GameObject optionPanel;
+    public GameObject HomePanel;
 
-    void Start()
+    public void Start()
     {
-        carousel.OnSwipe += OnCarouselSwipe;
-        TrailerSong(carousel.selected.songClip);
+        carousel.Activate();
     }
 
-    void OnCarouselSwipe(int dir, CarouselElement selected)
+    // Update is called once per frame
+    public void ShowOption()
     {
-        TrailerSong(selected.songClip);
+        carousel.Deactivate();
+        optionPanel.SetActive(true);
     }
 
-    void TrailerSong(AudioClip song)
+    public void HideOption()
     {
-        audioSource.clip = song;
-        audioSource.Play();
+        carousel.Activate();
+        optionPanel.SetActive(false);
     }
+
 
     // Update is called once per frame
     public void LoadSelectedStage()

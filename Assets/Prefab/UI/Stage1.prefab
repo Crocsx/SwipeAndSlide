@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 224584947396291430}
   - component: {fileID: 222705242792792276}
   - component: {fileID: 114428140783336542}
-  - component: {fileID: 95398606846769392}
   m_Layer: 5
   m_Name: SongTitle
   m_TagString: Untagged
@@ -89,24 +88,6 @@ Animator:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1650468132670934}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 32d17d2936f3a6f43a4ff35080e4d408, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!95 &95398606846769392
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1118023196081778}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 32d17d2936f3a6f43a4ff35080e4d408, type: 2}
@@ -4752,7 +4733,7 @@ ParticleSystemRenderer:
   m_ReflectionProbeUsage: 0
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10756, guid: 0000000000000000e000000000000000, type: 0}
+  - {fileID: 2100000, guid: df1108d523a0fa948925e9dc84d7fb43, type: 2}
   - {fileID: 2100000, guid: df1108d523a0fa948925e9dc84d7fb43, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -4864,7 +4845,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -100, y: 0}
+  m_SizeDelta: {x: -200, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224951639062482324
 RectTransform:
@@ -4880,8 +4861,8 @@ RectTransform:
   m_Father: {fileID: 224409626331402916}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 45.475002}
-  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 36, y: 153}
-  m_SizeDelta: {x: 200, y: 100}
+  m_AnchoredPosition: {x: -160, y: 160}
+  m_SizeDelta: {x: 700, y: 130}
   m_Pivot: {x: 0.5, y: 0.5}
