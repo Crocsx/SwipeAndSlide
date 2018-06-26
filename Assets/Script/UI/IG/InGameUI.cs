@@ -8,6 +8,7 @@ public class InGameUI : MonoBehaviour {
     public Text scoreText;
     public GameObject PauseMenu;
     public GameObject IGMenu;
+    public GameObject SwipeStart;
 
     public delegate void Loop();
     Loop updateLoop;
@@ -28,6 +29,7 @@ public class InGameUI : MonoBehaviour {
 
     private void OnStart()
     {
+        SwipeStart.SetActive(false);
         ShowIGMenu();
     }
 
