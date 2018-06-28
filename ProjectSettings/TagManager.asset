@@ -50,3 +50,6 @@ TagManager:
   - name: GameElement
     uniqueID: 2170270049
     locked: 0
+  - name: UI
+    uniqueID: 3303795769
+    locked: 0

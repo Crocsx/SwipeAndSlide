@@ -4,17 +4,19 @@ using UnityEngine;
 
 public class ShakeCamera : MonoBehaviour
 {
+    public float intensity = 5;
     Quaternion rot;
+
     private void Awake()
     {
         //MusicPlayer.instance.OnBeat += AskShake;
-        Quaternion rot = transform.rotation;
+        rot = transform.rotation;
     }
 
     private void Update()
     {
         transform.rotation = rot;
-        Vector3 offset = Random.insideUnitSphere * AudioAnalyzer.instance.bassValue * 5;
+        Vector3 offset = Random.insideUnitSphere * AudioAnalyzer.instance.bassValue * intensity;
         transform.eulerAngles = new Vector3(rot.x + offset.x, rot.y + offset.y, 0);
     }
 

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class ShakeUI : MonoBehaviour {
 
+    public float intensity = 0.1f;
     public RectTransform[] uiElements;
     Dictionary<RectTransform, Vector3> uiElementsAndScale;
 
@@ -19,7 +20,7 @@ public class ShakeUI : MonoBehaviour {
         foreach (KeyValuePair<RectTransform, Vector3> uiElementAndScale in uiElementsAndScale)
         {
             uiElementAndScale.Key.localScale = uiElementAndScale.Value;
-            uiElementAndScale.Key.localScale = uiElementAndScale.Value + (uiElementAndScale.Key.localScale * AudioAnalyzer.instance.bassValue * 0.1f);
+            uiElementAndScale.Key.localScale = uiElementAndScale.Value + (uiElementAndScale.Key.localScale * AudioAnalyzer.instance.bassValue * intensity);
         }
     }
 }

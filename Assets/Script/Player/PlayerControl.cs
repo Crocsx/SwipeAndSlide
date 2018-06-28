@@ -51,7 +51,6 @@ public class PlayerControl : MonoBehaviour {
     void Movement(TouchStruct touch, Vector2 direction)
     {
         Vector3 swipeDirection = ToolBox.instance.ClosestDirection(direction);
-        Vector3 faceDir = ToolBox.instance.ClosestDirection(-body.up);
 
         float angle = ToolBox.instance.ClosestAngle2D(-swipeDirection, lastDirection);
         body.Rotate(new Vector3(0, 0, angle), Space.Self);
